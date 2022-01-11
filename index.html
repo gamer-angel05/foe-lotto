@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>OX Quiz</title>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js" integrity="sha384-huj6zO6Ls5sr175tOLEbT6/i1gFS/S+m2KmgHxvohbvzymAjrcxcknjXrgfCfrYI" crossorigin="anonymous"></script>
+  	<script src="js/utils.js" defer></script>
+  	<script src="js/oxquiz.js" defer></script>
+
+	<div class="container header">
+		<h1>Maple Ox quiz</h1>
+		<p>If your question is missing, screenshot it and feed me the answer <a target="blank" href="https://goo.gl/forms/p7AO101hiXv5hcWA2">here.</a> Credits to <a target="blank" href="https://miyuyami.github.io/ms2/ox.html">Miyuyami</a> for the website.</p>
+	</div>
+
+	<div class="container" lang="en">
+		<form class="mt-2" onsubmit="return false;">
+			<div class="input-group">
+				<input id="ox_search" class="form-control" type="text" onkeyup="search();">
+				<div class="input-group-append">
+					<button id="ox_search_button" class="btn btn-primary" type="button" onclick="handleSearchClick();">Search</button>
+					<button id="ox_refresh_button" class="btn btn-dark" type="button" onclick="reloadData();" title="Reload from the sheet<br>[Questions] {0}<br>[True] {1}<br>[False] {2}<br>[Last entry] {3}" data-toggle="tooltip" data-placement="bottom" data-html="true">
+					<svg version="1.1" width="12" height="16" viewBox="0 0 12 12" aria-hidden="true">
+						<path fill="#FFFFFF" fill-rule="evenodd" d="M10.24 7.4a4.15 4.15 0 0 1-1.2 3.6 4.346 4.346 0 0 1-5.41.54L4.8 10.4.5 9.8l.6 4.2 1.31-1.26c2.36 1.74 5.7 1.57 7.84-.54a5.876 5.876 0 0 0 1.74-4.46l-1.75-.34zM2.96 5a4.346 4.346 0 0 1 5.41-.54L7.2 5.6l4.3.6-.6-4.2-1.31 1.26c-2.36-1.74-5.7-1.57-7.85.54C.5 5.03-.06 6.65.01 8.26l1.75.35A4.17 4.17 0 0 1 2.96 5z"/>
+					</svg> Refresh</button>
+				</div>
+			</div>
+		</form>
+		
+		<ul id="ox_table" class="list-group mt-3"></div>
+	</div>
+
+</body>
+</html>
