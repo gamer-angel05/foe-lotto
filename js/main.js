@@ -161,7 +161,7 @@ function load_encounter_input() {
 	/*	Load values from form */
 	MAX_ENCOUNTERS = $("#inputMaxEncounters").val() || $("#inputMaxEncounters").attr("placeholder");
 	MIN_ENCOUNTERS = $("#inputMinEncounters").val() || $("#inputMinEncounters").attr("placeholder");
-	MAX_FPS = $("#inputMaxFPs").val() || MAX_FPS;
+	MAX_FPS = $("#inputMaxFPs").val() || TOTAL_FPS;
 }
 
 function handleLotteryClick() {
