@@ -7,9 +7,19 @@ body {
 .header {
 	color: #FFFFFF;
 }
+
+#tables_info, #tables_lottery {
+	padding-top:  20px;
+}
+
+h5 {
+	color:  #FFFFFF;
+}
+
 a {
 	color: #49C0FB;
 }
+
 a:hover {
 	color: #3A9AC9;
 }
