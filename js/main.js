@@ -4,8 +4,7 @@ var MAX_FPS = undefined;
 var TOTAL_FPS = undefined;
 var __instance__ = undefined;
 var publicSpreadsheetUrl = "https://sheetdb.io/api/v1/wn1i44dope2mz?sheet=GE%20Lotto";
-var publicSheet = undefined; 
-//[{"Member":"Angel the Nameless","Encounters":"64","Donations":"400"},{"Member":"Ariadne the Wolfspeaker","Encounters":"64","Donations":"20"},{"Member":"bethbird2020","Encounters":"64","Donations":"20"},{"Member":"Graycie Gray","Encounters":"64","Donations":"20"},{"Member":"Lady911","Encounters":"64","Donations":"40"},{"Member":"Mik the Maker","Encounters":"64","Donations":"20"},{"Member":"Rakush","Encounters":"64","Donations":"20"},{"Member":"rettig83","Encounters":"64","Donations":"20"},{"Member":"richrice","Encounters":"64","Donations":"10"},{"Member":"Rofello","Encounters":"64","Donations":"5"},{"Member":"Ryudn Paean","Encounters":"64","Donations":"400"},{"Member":"Subjammer","Encounters":"64","Donations":"5"},{"Member":"Timberghost","Encounters":"64","Donations":"100"},{"Member":"tombonker","Encounters":"64","Donations":""},{"Member":"Yarlac","Encounters":"64","Donations":""},{"Member":"Lawrence the Just","Encounters":"60","Donations":""},{"Member":"Damius Maximus ","Encounters":"48","Donations":""},{"Member":"Fabulous41403","Encounters":"48","Donations":""},{"Member":"PrincipledTravel","Encounters":"48","Donations":""},{"Member":"Donnanymous the Valiant","Encounters":"43","Donations":""},{"Member":"Wilburforce the Savior","Encounters":"43","Donations":""},{"Member":"PeterPiper5","Encounters":"40","Donations":"10"},{"Member":"confederatoin","Encounters":"36","Donations":""},{"Member":"deus*ex*machina","Encounters":"36","Donations":""},{"Member":"Janus Dialecticus","Encounters":"32","Donations":""},{"Member":"Socslan","Encounters":"23","Donations":""},{"Member":"turdfurgeson01","Encounters":"23","Donations":""},{"Member":"Hunter Seeker","Encounters":"21","Donations":""},{"Member":"Captain Billy","Encounters":"20","Donations":""},{"Member":"WeberGrill","Encounters":"19","Donations":""},{"Member":"Tripaleo","Encounters":"18","Donations":""},{"Member":"LdySaphira 0712","Encounters":"16","Donations":""},{"Member":"Lord Bobby Lopaka","Encounters":"16","Donations":""},{"Member":"Rhythwyn","Encounters":"16","Donations":""},{"Member":"TeddyBoski the God","Encounters":"16","Donations":""},{"Member":"Damocles the Daring","Encounters":"15","Donations":""},{"Member":"Keith of StoneAge","Encounters":"14","Donations":""},{"Member":"Coyote CJ","Encounters":"11","Donations":""},{"Member":"Shapiro","Encounters":"11","Donations":""},{"Member":"Bougher ","Encounters":"9","Donations":""},{"Member":"darknel","Encounters":"8","Donations":""},{"Member":"Original Russ","Encounters":"5","Donations":""},{"Member":"666Irish the Annoyed","Encounters":"3","Donations":""},{"Member":"Cadmus 1235 the Hawk","Encounters":"0","Donations":""},{"Member":"ChipMaker","Encounters":"0","Donations":""},{"Member":"coldbloodbath","Encounters":"0","Donations":""},{"Member":"freedomhawk","Encounters":"0","Donations":""},{"Member":"FunnyBeach","Encounters":"0","Donations":""},{"Member":"gunnarmachine","Encounters":"0","Donations":""},{"Member":"Hawkeye 22d","Encounters":"0","Donations":""},{"Member":"Pantea 1882 the Savior","Encounters":"0","Donations":""},{"Member":"Sophocles 735 the Bold","Encounters":"0","Donations":""},{"Member":"WrenTX","Encounters":"0","Donations":""},{"Member":"zzz bobbbcattt2","Encounters":"0","Donations":""},{"Member":"zzz Dan the Man 616","Encounters":"0","Donations":""},{"Member":"zzz Loyyd7","Encounters":"0","Donations":""},{"Member":"Cynkenobi","Encounters":"","Donations":""},{"Member":"Daxier","Encounters":"","Donations":""},{"Member":"Xtinguish","Encounters":"","Donations":""},{"Member":"ZonoChron","Encounters":"","Donations":""},{"Member":"zzz 0000pooja","Encounters":"","Donations":""},{"Member":"zzz Acromeite the Merciful","Encounters":"","Donations":""},{"Member":"zzz Huskerfaninwa","Encounters":"","Donations":""},{"Member":"zzz Lawdog the Great","Encounters":"","Donations":""},{"Member":"zzz Mew2014","Encounters":"","Donations":""},{"Member":"zzz Mr T2","Encounters":"","Donations":""},{"Member":"zzz SzabyLaszlo","Encounters":"","Donations":""},{"Member":"zzz-Bam8904","Encounters":"","Donations":""},{"Member":"zzz-derrik Henry101","Encounters":"","Donations":""},{"Member":"zzz-FrozenVampire","Encounters":"","Donations":""},{"Member":"zzz-Maren Tudor","Encounters":"","Donations":""},{"Member":"zzz-rcdenny","Encounters":"","Donations":""},{"Member":"zzz-Simi Star","Encounters":"","Donations":""},{"Member":"zzz-Yummyest ","Encounters":"","Donations":""}];
+var publicSheet = [{"Member":"Angel the Nameless","Encounters":"64","Donations":"400"},{"Member":"Ariadne the Wolfspeaker","Encounters":"64","Donations":"20"},{"Member":"bethbird2020","Encounters":"64","Donations":"20"},{"Member":"Graycie Gray","Encounters":"64","Donations":"20"},{"Member":"Lady911","Encounters":"64","Donations":"40"},{"Member":"Mik the Maker","Encounters":"64","Donations":"20"},{"Member":"Rakush","Encounters":"64","Donations":"20"},{"Member":"rettig83","Encounters":"64","Donations":"20"},{"Member":"richrice","Encounters":"64","Donations":"10"},{"Member":"Rofello","Encounters":"64","Donations":"5"},{"Member":"Ryudn Paean","Encounters":"64","Donations":"400"},{"Member":"Subjammer","Encounters":"64","Donations":"5"},{"Member":"Timberghost","Encounters":"64","Donations":"100"},{"Member":"tombonker","Encounters":"64","Donations":""},{"Member":"Yarlac","Encounters":"64","Donations":""},{"Member":"Lawrence the Just","Encounters":"60","Donations":""},{"Member":"Damius Maximus ","Encounters":"48","Donations":""},{"Member":"Fabulous41403","Encounters":"48","Donations":""},{"Member":"PrincipledTravel","Encounters":"48","Donations":""},{"Member":"Donnanymous the Valiant","Encounters":"43","Donations":""},{"Member":"Wilburforce the Savior","Encounters":"43","Donations":""},{"Member":"PeterPiper5","Encounters":"40","Donations":"10"},{"Member":"confederatoin","Encounters":"36","Donations":""},{"Member":"deus*ex*machina","Encounters":"36","Donations":""},{"Member":"Janus Dialecticus","Encounters":"32","Donations":""},{"Member":"Socslan","Encounters":"23","Donations":""},{"Member":"turdfurgeson01","Encounters":"23","Donations":""},{"Member":"Hunter Seeker","Encounters":"21","Donations":""},{"Member":"Captain Billy","Encounters":"20","Donations":""},{"Member":"WeberGrill","Encounters":"19","Donations":""},{"Member":"Tripaleo","Encounters":"18","Donations":""},{"Member":"LdySaphira 0712","Encounters":"16","Donations":""},{"Member":"Lord Bobby Lopaka","Encounters":"16","Donations":""},{"Member":"Rhythwyn","Encounters":"16","Donations":""},{"Member":"TeddyBoski the God","Encounters":"16","Donations":""},{"Member":"Damocles the Daring","Encounters":"15","Donations":""},{"Member":"Keith of StoneAge","Encounters":"14","Donations":""},{"Member":"Coyote CJ","Encounters":"11","Donations":""},{"Member":"Shapiro","Encounters":"11","Donations":""},{"Member":"Bougher ","Encounters":"9","Donations":""},{"Member":"darknel","Encounters":"8","Donations":""},{"Member":"Original Russ","Encounters":"5","Donations":""},{"Member":"666Irish the Annoyed","Encounters":"3","Donations":""},{"Member":"Cadmus 1235 the Hawk","Encounters":"0","Donations":""},{"Member":"ChipMaker","Encounters":"0","Donations":""},{"Member":"coldbloodbath","Encounters":"0","Donations":""},{"Member":"freedomhawk","Encounters":"0","Donations":""},{"Member":"FunnyBeach","Encounters":"0","Donations":""},{"Member":"gunnarmachine","Encounters":"0","Donations":""},{"Member":"Hawkeye 22d","Encounters":"0","Donations":""},{"Member":"Pantea 1882 the Savior","Encounters":"0","Donations":""},{"Member":"Sophocles 735 the Bold","Encounters":"0","Donations":""},{"Member":"WrenTX","Encounters":"0","Donations":""},{"Member":"zzz bobbbcattt2","Encounters":"0","Donations":""},{"Member":"zzz Dan the Man 616","Encounters":"0","Donations":""},{"Member":"zzz Loyyd7","Encounters":"0","Donations":""},{"Member":"Cynkenobi","Encounters":"","Donations":""},{"Member":"Daxier","Encounters":"","Donations":""},{"Member":"Xtinguish","Encounters":"","Donations":""},{"Member":"ZonoChron","Encounters":"","Donations":""},{"Member":"zzz 0000pooja","Encounters":"","Donations":""},{"Member":"zzz Acromeite the Merciful","Encounters":"","Donations":""},{"Member":"zzz Huskerfaninwa","Encounters":"","Donations":""},{"Member":"zzz Lawdog the Great","Encounters":"","Donations":""},{"Member":"zzz Mew2014","Encounters":"","Donations":""},{"Member":"zzz Mr T2","Encounters":"","Donations":""},{"Member":"zzz SzabyLaszlo","Encounters":"","Donations":""},{"Member":"zzz-Bam8904","Encounters":"","Donations":""},{"Member":"zzz-derrik Henry101","Encounters":"","Donations":""},{"Member":"zzz-FrozenVampire","Encounters":"","Donations":""},{"Member":"zzz-Maren Tudor","Encounters":"","Donations":""},{"Member":"zzz-rcdenny","Encounters":"","Donations":""},{"Member":"zzz-Simi Star","Encounters":"","Donations":""},{"Member":"zzz-Yummyest ","Encounters":"","Donations":""}];
 
 
 
@@ -13,7 +12,7 @@ function __init__() {
 	/*	Load the public sheet data and cache it. Reload the data by using the Refresh button.
 		This is to avoid pinging the limited api. */
     $("[data-toggle=\"tooltip\"]").tooltip().tooltip("hide"); 
-	axios.get(publicSpreadsheetUrl)
+	/*axios.get(publicSpreadsheetUrl)
     .then( response => {
     	publicSheet = response.data;
         console.log(publicSheet);
@@ -21,12 +20,12 @@ function __init__() {
 	    let players = publicSheet.filter((e) => e.Encounters && e.Encounters > 0);
 	    __instance__ = new Generate(donors, players);
 	    show_info();
-    });
-    /*console.log(publicSheet);
+    });*/
+    console.log(publicSheet);
     let donors = publicSheet.filter((e) => e.Donations && e.Donations > 0);
     let players = publicSheet.filter((e) => e.Encounters && e.Encounters > 0);
     __instance__ = new Generate(donors, players);
-    show_info();*/
+    show_info();
 }
 
 // don't really need to split donors and players, can just filter down arrays?
@@ -73,12 +72,12 @@ class Generate {
 
 	get_winners() {
 		this.winner_list = []
-		this.#get_winners()
+		this.get_winner()
 
 		return this.assign_donors();
 	}
 
-	#get_winners() {
+	get_winner() {
 		/*	Will loop until there is no more fps available.
 			max can be updated with a capped value, meaning
 			this is the max fps awarded per person. */
@@ -91,14 +90,14 @@ class Generate {
 			winner_fps = this.fps;
 		};
 
-		//console.log(result + " / " + winner_encounters + " encounters / " + winner_fps + " fps");
+		console.log(result + " / " + winner_encounters + " encounters / " + winner_fps + " fps");
 		this.winner_list.push({"name": result, "remain_fps": winner_fps, "total_fps": winner_fps, "donors": []});
 		this.fps -= winner_fps;
 		this.players_selection = this.players_selection.filter((e) => e !== result);
 		add_to_table(result, winner_fps, "#table_lotwinners");
 
 		if (this.fps > 0 && this.players_selection.length) {
-			return this.#get_winners();
+			return this.get_winner();
 		}
 	}
 
