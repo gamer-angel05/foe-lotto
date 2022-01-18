@@ -1,5 +1,5 @@
-var MAX_ENCOUNTERS = undefined;
-var MIN_ENCOUNTERS = undefined;
+var MAX_ENCOUNTERS = $("#inputMaxEncounters").attr("placeholder");
+var MIN_ENCOUNTERS = $("#inputMinEncounters").attr("placeholder");
 var MAX_FPS = undefined;
 var TOTAL_FPS = undefined;
 var __instance__ = undefined;
@@ -11,6 +11,7 @@ function __init__() {
 	/*	Load the public sheet data and cache it. Reload the data by using the Refresh button.
 		This is to avoid pinging the limited api. */
 	$('[data-toggle="tooltip"]').tooltip({trigger : 'hover'})
+
 	fetch(publicSpreadsheetUrl)
     .then( response => response.json())
     .then( data => {
@@ -25,12 +26,13 @@ function __init__() {
 
 
 class Generate {
-	#donors
-	#players
+	#donors;
+	#players;
 
-	fps = 0
-	players_selection = []
-	winner_list = []
+	fps = 0;
+	players_filtered = undefined;
+	players_selection = [];
+	winner_list = [];
 
 	constructor(donors, players) {
 		this.#donors = donors;
@@ -47,12 +49,13 @@ class Generate {
 	}
 
 	get_players() {
-		return this.#players;
+		return this.players_filtered || this.#players;
 	}
 
 	shuffle() {
 		this.fps = Math.min(MAX_FPS, TOTAL_FPS);
-		this.players_selection = this.#players.map(({Member}) => Member);
+		this.players_filtered = this.#players.filter((e) => e.Encounters > Number(MIN_ENCOUNTERS));
+		this.players_selection = this.players_filtered.map(({Member}) => Member);
 		this.shuffle_donors();
 		this.shuffle_players();
 	}
@@ -77,7 +80,7 @@ class Generate {
 			max can be updated with a capped value, meaning
 			this is the max fps awarded per person. */
 		const result = choice(this.players_selection);
-		const winner = this.#players.find(({ Member }) => Member === result);
+		const winner = this.players_filtered.find(({ Member }) => Member === result);
 		const winner_encounters = winner.Encounters;
 		var winner_fps = Math.min(MAX_ENCOUNTERS, winner_encounters);
 
@@ -151,8 +154,8 @@ class Generate {
 
 function load_encounter_input() {
 	/*	Load values from form */
-	MAX_ENCOUNTERS = $("#inputMaxEncounters").val() || $("#inputMaxEncounters").attr("placeholder");
-	MIN_ENCOUNTERS = $("#inputMinEncounters").val() || $("#inputMinEncounters").attr("placeholder");
+	MAX_ENCOUNTERS = $("#inputMaxEncounters").val() || MAX_ENCOUNTERS;
+	MIN_ENCOUNTERS = $("#inputMinEncounters").val() || MIN_ENCOUNTERS;
 	MAX_FPS = $("#inputMaxFPs").val() || TOTAL_FPS;
 }
 
