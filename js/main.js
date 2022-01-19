@@ -2,6 +2,7 @@ var MAX_ENCOUNTERS = undefined;
 var MIN_ENCOUNTERS = undefined;
 var MAX_FPS = undefined;
 var TOTAL_FPS = undefined;
+var RELOAD_INFO = false;
 var __instance__ = undefined;
 var publicSpreadsheetUrl = "https://opensheet.elk.sh/1-XABpNzY6jgg_Bh9KaDKS-pPNgGF22d_yAxqKOAM6RI/GE%20Lotto"; // opensource redirect for google sheet w/o auth
 var publicSheet = undefined;
@@ -159,9 +160,17 @@ class Generate {
 function load_encounter_input() {
 	/*	Load values from form 
 	*/
+	old_max_encounters = MAX_ENCOUNTERS;
+	old_min_encounters = MIN_ENCOUNTERS;
+	old_max_fps = MAX_FPS;
+
 	MAX_ENCOUNTERS = $("#inputMaxEncounters").val() || $("#inputMaxEncounters").attr("placeholder");;
 	MIN_ENCOUNTERS = $("#inputMinEncounters").val() || $("#inputMinEncounters").attr("placeholder");
 	MAX_FPS = $("#inputMaxFPs").val() || TOTAL_FPS;
+
+	if (old_max_encounters !== MAX_ENCOUNTERS || old_min_encounters !== MIN_ENCOUNTERS || old_max_fps !== MAX_FPS) {
+		RELOAD_INFO = true;
+	}
 }
 
 function handleLotteryClick() {
@@ -194,7 +203,11 @@ function handleInfoClick() {
 		info_button.text("More Info");
 	};
 
-	show_info();
+	if (RELOAD_INFO) {
+		show_info();
+		RELOAD_INFO = false;
+	};
+	
 }
 
 function handleReloadData() {
