@@ -251,7 +251,6 @@ function show_info() {
 	/*	Fill info tables
 	*/
 	$("#tables_info tbody tr").remove();
-	$("#tables_lottery tbody tr").remove();
 	load_encounter_input();
 
 	__instance__.get_players().forEach((e) => {
