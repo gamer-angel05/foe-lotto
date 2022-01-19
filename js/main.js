@@ -1,15 +1,16 @@
-var MAX_ENCOUNTERS = $("#inputMaxEncounters").attr("placeholder");
-var MIN_ENCOUNTERS = $("#inputMinEncounters").attr("placeholder");
+var MAX_ENCOUNTERS = undefined;
+var MIN_ENCOUNTERS = undefined;
 var MAX_FPS = undefined;
 var TOTAL_FPS = undefined;
 var __instance__ = undefined;
-var publicSpreadsheetUrl = "https://opensheet.elk.sh/1zhxp2aC5jqW7IyffHvz1_ucLnOKbqNWAP5wxBhE3P7c/GE%20Lotto"; // opensource redirect for google sheet w/o auth
+var publicSpreadsheetUrl = "https://opensheet.elk.sh/1-XABpNzY6jgg_Bh9KaDKS-pPNgGF22d_yAxqKOAM6RI/GE%20Lotto"; // opensource redirect for google sheet w/o auth
 var publicSheet = undefined;
 
 
 function __init__() {
 	/*	Load the public sheet data and cache it. Reload the data by using the Refresh button.
-		This is to avoid pinging the limited api. */
+		This is to avoid pinging the limited api. 
+	*/
 	$('[data-toggle="tooltip"]').tooltip({trigger : 'hover'})
 
 	fetch(publicSpreadsheetUrl)
@@ -21,6 +22,7 @@ function __init__() {
 	    let players = publicSheet.filter((e) => e.Encounters && e.Encounters > 0);
 	    __instance__ = new Generate(donors, players);
 	    show_info();
+	    setRefreshButtonTooltip();
     });
 }
 
@@ -49,12 +51,12 @@ class Generate {
 	}
 
 	get_players() {
-		return this.players_filtered || this.#players;
+		return this.#players;
 	}
 
 	shuffle() {
 		this.fps = Math.min(MAX_FPS, TOTAL_FPS);
-		this.players_filtered = this.#players.filter((e) => e.Encounters > Number(MIN_ENCOUNTERS));
+		this.players_filtered = this.#players.filter((e) => e.Building && e.Encounters > Number(MIN_ENCOUNTERS));
 		this.players_selection = this.players_filtered.map(({Member}) => Member);
 		this.shuffle_donors();
 		this.shuffle_players();
@@ -89,10 +91,10 @@ class Generate {
 		};
 
 		//console.log(result + " / " + winner_encounters + " encounters / " + winner_fps + " fps");
-		this.winner_list.push({"name": result, "remain_fps": winner_fps, "total_fps": winner_fps, "donors": []});
+		this.winner_list.push({"name": result, "building": winner.Building, "remain_fps": winner_fps, "total_fps": winner_fps, "donors": []});
 		this.fps -= winner_fps;
 		this.players_selection = this.players_selection.filter((e) => e !== result);
-		add_to_table(result, winner_fps, "#table_lotwinners");
+		add_row_table(result + " awarded " + winner_fps + " FPs", "#table_lotwinners");
 
 		if (this.fps > 0 && this.players_selection.length) {
 			return this.get_winner();
@@ -101,7 +103,8 @@ class Generate {
 
 	assign_donors() {
 		/* 	Donors are shuffled in case there is too many FPs
-			available for the number of winners. */
+			available for the number of winners. 
+		*/
 		for (let i = 0; i < this.#donors.length; i++) {
 			const donor = this.#donors[i];
 			var fps_available = donor.Donations;
@@ -129,7 +132,8 @@ class Generate {
 	}
 
 	get_assigned_donors() {
-		// pretty print the results
+		/* pretty print the results
+		*/
 		const donor_list = {};
 
 		this.winner_list.forEach((winner) => {
@@ -139,28 +143,30 @@ class Generate {
 				if (!(donor_name in donor_list)) {
 					donor_list[donor_name] = [];
 				}
-				donor_list[donor_name].push({"to": winner.name, "fps": donor[1]});
+				donor_list[donor_name].push({"to": winner.name, "fps": donor[1], "building": winner.building});
 				//donor_list[donor_name].push(donor_name + " -> " + winner.name + " : [" + donor[1] + "] FPs");
 			});
 		});
 
 		for (const [key, value] of Object.entries(donor_list)) {
 			value.forEach((donation) => {
-				add_to_table(key + " -> " + donation.to, donation.fps, "#table_lotdonors")
+				add_row_table(key + " pays " + donation.fps + " FPs on " + donation.to + "'s " + donation.building, "#table_lotdonors");
 			});
 		}
 	}
 }
 
 function load_encounter_input() {
-	/*	Load values from form */
-	MAX_ENCOUNTERS = $("#inputMaxEncounters").val() || MAX_ENCOUNTERS;
-	MIN_ENCOUNTERS = $("#inputMinEncounters").val() || MIN_ENCOUNTERS;
+	/*	Load values from form 
+	*/
+	MAX_ENCOUNTERS = $("#inputMaxEncounters").val() || $("#inputMaxEncounters").attr("placeholder");;
+	MIN_ENCOUNTERS = $("#inputMinEncounters").val() || $("#inputMinEncounters").attr("placeholder");
 	MAX_FPS = $("#inputMaxFPs").val() || TOTAL_FPS;
 }
 
 function handleLotteryClick() {
-	/* 	Reset tables and start the lottery process */
+	/* 	Reset tables and start the lottery process 
+	*/
 	load_encounter_input();
 	$("#table_lotwinners tbody tr").remove();
 	$("#table_lotdonors tbody tr").remove();
@@ -174,7 +180,8 @@ function handleLotteryClick() {
 
 function handleInfoClick() {
 	/*	Display the basic informations that is used
-		in the shuffle for transparency */
+		in the shuffle for transparency 
+	*/
 	load_encounter_input();
 	let tables_info = $("#tables_info");
 	let info_button = $("#info_button")
@@ -186,11 +193,14 @@ function handleInfoClick() {
 		tables_info.css("display", "none");
 		info_button.text("More Info");
 	};
+
+	show_info();
 }
 
 function handleReloadData() {
 	/*	Reload data from the sheet, so erase all loaded data
-		and re-init everything as if first run. */
+		and re-init everything as if first run. 
+	*/
 	$("#table_lotwinners tbody tr").remove();
 	$("#table_lotdonors tbody tr").remove();
 	$("#tables_info tbody tr").remove();
@@ -202,6 +212,8 @@ function handleReloadData() {
 }
 
 function copyTable(el) {
+	/*	Copy tables, via button click.
+	*/
     var urlField = document.getElementById(el);
     var range = document.createRange();
     range.selectNode(urlField);
@@ -211,20 +223,43 @@ function copyTable(el) {
 
   
 
-function add_to_table(player, value, table) {
+function add_to_table(player, values, table, style=undefined) {
 	var tbody = $(table).children('tbody');
-	tbody.append("<tr><td>" + player + "</td><td>"+ value + "</td></tr>");
+	var tr = "<tr"
+
+	if (style) {
+		tr += " class=" + style
+	}
+	tr += "><td>" + player + "</td>"
+
+	values.forEach((e) => tr += "<td>" + e + "</td>");
+	tbody.append(tr + "</tr>");
+}
+
+function add_row_table(value, table, style=undefined) {
+	var tbody = $(table).children('tbody');
+	var tr = "<tr"
+
+	if (style) {
+		tr += " class=" + style
+	}
+	tr += ">" + "<td>" + value + "</td>";
+	tbody.append(tr + "</tr>")
 }
 
 function show_info() {
+	/*	Fill info tables
+	*/
+	$("#tables_info tbody tr").remove();
+	$("#tables_lottery tbody tr").remove();
+	load_encounter_input();
 
 	__instance__.get_players().forEach((e) => {
-		add_to_table(e.Member, e.Encounters, "#table_players");
+		add_to_table(e.Member, [e.Encounters, e.Building || ""], "#table_players", e.Building && e.Encounters > MIN_ENCOUNTERS && "table-success");
 	});
 	__instance__.get_donors().forEach((e) => {
-		add_to_table(e.Member, e.Donations, "#table_donors");
+		add_to_table(e.Member, [e.Donations], "#table_donors");
 	});
-	setRefreshButtonTooltip();
 }
 
 var refreshButtonTooltipFormat;
