@@ -94,7 +94,7 @@ class Generate {
 		this.winner_list.push({"name": result, "building": winner.Building, "remain_fps": winner_fps, "total_fps": winner_fps, "donors": []});
 		this.fps -= winner_fps;
 		this.players_selection = this.players_selection.filter((e) => e !== result);
-		add_row_table(result + " awarded " + winner_fps + " FPs", "#table_lotwinners");
+		add_row_table(result + " is awarded " + winner_fps + " FPs", "#table_lotwinners");
 
 		if (this.fps > 0 && this.players_selection.length) {
 			return this.get_winner();
