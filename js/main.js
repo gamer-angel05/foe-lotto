@@ -95,7 +95,7 @@ class Generate {
 		this.winner_list.push({"name": result, "building": winner.Building, "remain_fps": winner_fps, "total_fps": winner_fps, "donors": []});
 		this.fps -= winner_fps;
 		this.players_selection = this.players_selection.filter((e) => e !== result);
-		add_row_table(result + " is awarded " + winner_fps + " FPs", "#table_lotwinners");
+		add_row_table(result + " is awarded " + winner_fps + " FP", "#table_lotwinners");
 
 		if (this.fps > 0 && this.players_selection.length) {
 			return this.get_winner();
@@ -151,7 +151,7 @@ class Generate {
 
 		for (const [key, value] of Object.entries(donor_list)) {
 			value.forEach((donation) => {
-				add_row_table(key + " pays " + donation.fps + " FPs on " + donation.to + "'s " + donation.building, "#table_lotdonors");
+				add_row_table(key + " pays " + donation.fps + " FP on " + donation.to + "'s " + donation.building, "#table_lotdonors");
 			});
 		}
 	}
@@ -214,8 +214,8 @@ function handleReloadData() {
 	/*	Reload data from the sheet, so erase all loaded data
 		and re-init everything as if first run. 
 	*/
-	$("#table_lotwinners tbody tr").remove();
-	$("#table_lotdonors tbody tr").remove();
+	//$("#table_lotwinners tbody tr").remove();
+	//$("#table_lotdonors tbody tr").remove();
 	$("#tables_info tbody tr").remove();
 	$("#tables_lottery tbody tr").remove();
 	$("#tables_info").css("display", "none");
@@ -267,10 +267,14 @@ function show_info() {
 	load_encounter_input();
 
 	__instance__.get_players().forEach((e) => {
-		add_to_table(e.Member, [e.Encounters, e.Building || ""], "#table_players", e.Building && e.Encounters > MIN_ENCOUNTERS && "table-success");
+		add_to_table(e.Member, [e.Building || "", e.Encounters], "#table_players", e.Building && e.Encounters > MIN_ENCOUNTERS && "table-success");
+		if (e.Building) {
+			add_to_table(e.Member, [e.Building], "#table_buildings");
+		}
 	});
+
 	__instance__.get_donors().forEach((e) => {
-		add_to_table(e.Member, [e.Donations], "#table_donors");
+		add_to_table(e.Member, [e.Donations + " FP"], "#table_donors");
 	});
 }
 
@@ -286,7 +290,7 @@ function setRefreshButtonTooltip() {
 	$refreshButton.attr("title", refreshButtonTooltipFormat.format(__instance__.get_players().length, donors.length, TOTAL_FPS))
 				  .tooltip("_fixTitle");
 
-	$("#fps_available").text("FPs available: " + TOTAL_FPS);
+	$("#fps_available").text("FP available: " + TOTAL_FPS);
 }
 
 $(document).ready(__init__);
