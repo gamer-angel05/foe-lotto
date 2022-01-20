@@ -227,7 +227,10 @@ function handleReloadData() {
 	$("#tables_info tbody tr").remove();
 	$("#tables_lottery tbody tr").remove();
 	$("#tables_info").css("display", "none");
+	$("#info_button").text("More Info");
 	$("#tables_lottery").css("display", "none");
+	$("#create_post_area").text("");
+	$("#create_post").css("display", "none");
 	
 	__init__();
 }
