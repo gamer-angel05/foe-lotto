@@ -57,7 +57,7 @@
 				<div class="col-auto">
 					<div class="input-group">
 						<div class="input-group-append">
-							<button id="search_button" class="btn btn-success" type="button" onclick="handleLotteryClick();" data-toggle="tooltip" data-placement="bottom" title="Participants and donors are shuffled to keep things fair.">Lottery!</button>
+							<button id="lottery_button" class="btn btn-success" type="button" onclick="handleLotteryClick();" data-toggle="tooltip" data-placement="bottom" title="Participants and donors are shuffled to keep things fair.">Lottery!</button>
 							<button id="info_button" class="btn btn-info" type="button" onclick="handleInfoClick();">More Info</button>
 							<button id="refresh_button" class="btn btn-dark" type="button" onclick="handleReloadData();" title="Reload from the sheet<br>[Players] {0}<br>[Donors] {1}<br>[Donations] {2} FP" data-toggle="tooltip" data-placement="bottom" data-html="true">
 							<svg version="1.1" width="12" height="16" viewBox="0 0 12 12" aria-hidden="true">
@@ -87,32 +87,41 @@
 				</table>
 			</div>
 			<div class="responsive col">
+				<div class="bd-clipboard">
+					<button type="button" class="btn btn-clipboard btn-primary btn-sm float-right" title="" data-original-title="Copy to clipboard" onclick="copyTable('table_donors')">Copy</button>
+				</div>
+				<table id="table_donors" class="table table-sm table-striped table-light">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">Donors</th>
+							<th scope="col">Forge points</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+				<div class="bd-clipboard">
+					<button type="button" class="btn btn-clipboard btn-primary btn-sm float-right" title="" data-original-title="Copy to clipboard" onclick="copyTable('table_buildings')">Copy</button>
+				</div>
+				<table id="table_buildings" class="table table-sm table-striped table-light">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">Players</th>
+							<th scope="col">Building</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+				<button id="post_button" class="btn btn-info" type="button" onclick="handleCreatePost();">Create Post</button>
+				<div id="create_post" style="display:none;">
 					<div class="bd-clipboard">
-						<button type="button" class="btn btn-clipboard btn-primary btn-sm float-right" title="" data-original-title="Copy to clipboard" onclick="copyTable('table_donors')">Copy</button>
+						<button type="button" class="btn btn-clipboard btn-primary btn-sm float-right" title="" data-original-title="Copy to clipboard" onclick="copyTextArea('create_post_area')">Copy</button>
 					</div>
-					<table id="table_donors" class="table table-sm table-striped table-light">
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col">Donors</th>
-								<th scope="col">Forge points</th>
-							</tr>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
-					<div class="bd-clipboard">
-						<button type="button" class="btn btn-clipboard btn-primary btn-sm float-right" title="" data-original-title="Copy to clipboard" onclick="copyTable('table_buildings')">Copy</button>
+					<div class="form-group">
+					  <textarea class="form-control" id="create_post_area" rows="15"></textarea>
 					</div>
-					<table id="table_buildings" class="table table-sm table-striped table-light">
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col">Players</th>
-								<th scope="col">Building</th>
-							</tr>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
+				</div>
 			</div>
 		</div>
 	</div>

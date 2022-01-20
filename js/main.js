@@ -4,8 +4,10 @@ var MAX_FPS = undefined;
 var TOTAL_FPS = undefined;
 var RELOAD_INFO = false;
 var __instance__ = undefined;
-var publicSpreadsheetUrl = "https://opensheet.elk.sh/1-XABpNzY6jgg_Bh9KaDKS-pPNgGF22d_yAxqKOAM6RI/GE%20Lotto"; // opensource redirect for google sheet w/o auth
+let publicSpreadsheetUrl = "https://opensheet.elk.sh/1-XABpNzY6jgg_Bh9KaDKS-pPNgGF22d_yAxqKOAM6RI/GE%20Lotto"; // opensource redirect for google sheet w/o auth
+let publicSpreadsheetDoc = "https://opensheet.elk.sh/1-XABpNzY6jgg_Bh9KaDKS-pPNgGF22d_yAxqKOAM6RI/Documentation";
 var publicSheet = undefined;
+var documentation = undefined;
 
 
 function __init__() {
@@ -13,6 +15,12 @@ function __init__() {
 		This is to avoid pinging the limited api. 
 	*/
 	$('[data-toggle="tooltip"]').tooltip({trigger : 'hover'})
+
+	fetch(publicSpreadsheetDoc)
+	.then( response => response.json())
+	.then( data => {
+		documentation = data;
+	});
 
 	fetch(publicSpreadsheetUrl)
     .then( response => response.json())
@@ -222,6 +230,41 @@ function handleReloadData() {
 	$("#tables_lottery").css("display", "none");
 	
 	__init__();
+}
+
+function handleCreatePost() {
+	/* Copy pasta to create the info post.
+		Intro buildings
+		Buildings
+		Intro donors
+		Donors
+	*/
+	let buildings_doc = documentation.find(o => o.Title === "intro-ge-buildings");
+	let buildings2_doc = documentation.find(o => o.Title === "intro-ge-buildings2");
+	let donors_doc = documentation.find(o => o.Title == "intro-ge-donors");
+	var text = "";
+	// Buildings
+	text += buildings_doc.Text + "\n";
+	$("#table_buildings tbody tr").each((idx, tr) => {
+		text += "\n" + tr.innerText;
+	});
+	text += "\n\n";
+	text += buildings2_doc.Text + "\n\n";
+	// Donors
+	text += donors_doc.Text + "\n"
+	$("#table_donors tbody tr").each((idx, tr) => {
+		text += "\n" + tr.innerText;
+	});
+	$("#create_post_area").val(text);
+	$("#create_post").css("display", "");
+}
+
+function copyTextArea(el) {
+	/* Copy text area, via button click.
+	*/
+	var urlField = document.getElementById(el);
+	urlField.select();
+	document.execCommand('copy');
 }
 
 function copyTable(el) {
