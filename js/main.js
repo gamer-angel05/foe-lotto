@@ -242,9 +242,9 @@ function handleCreatePost() {
 		Intro donors
 		Donors
 	*/
-	let buildings_doc = documentation.find(o => o.Title === "intro-ge-buildings");
-	let buildings2_doc = documentation.find(o => o.Title === "intro-ge-buildings2");
-	let donors_doc = documentation.find(o => o.Title == "intro-ge-donors");
+	let buildings_doc = documentation.find(o => o.String === "intro-ge-buildings");
+	let buildings2_doc = documentation.find(o => o.String === "intro-ge-buildings2");
+	let donors_doc = documentation.find(o => o.String == "intro-ge-donors");
 	var text = "";
 	// Buildings
 	text += buildings_doc.Text + "\n";
