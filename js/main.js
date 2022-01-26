@@ -187,6 +187,8 @@ function handleLotteryClick() {
 	load_encounter_input();
 	$("#table_lotwinners tbody tr").remove();
 	$("#table_lotdonors tbody tr").remove();
+	$("#create_winner_area").val("");
+	$("#create_winner").css("display", "none");
 	
 	__instance__.shuffle();
 	__instance__.get_winners();
@@ -222,8 +224,8 @@ function handleReloadData() {
 	/*	Reload data from the sheet, so erase all loaded data
 		and re-init everything as if first run. 
 	*/
-	//$("#table_lotwinners tbody tr").remove();
-	//$("#table_lotdonors tbody tr").remove();
+	$("#table_lotwinners tbody tr").remove();
+	$("#table_lotdonors tbody tr").remove();
 	$("#tables_info tbody tr").remove();
 	$("#tables_lottery tbody tr").remove();
 	$("#tables_info").css("display", "none");
@@ -231,6 +233,8 @@ function handleReloadData() {
 	$("#tables_lottery").css("display", "none");
 	$("#create_post_area").text("");
 	$("#create_post").css("display", "none");
+	$("#create_winner_area").val("");
+	$("#create_winner").css("display", "none");
 	
 	__init__();
 }
