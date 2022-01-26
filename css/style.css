@@ -1,18 +1,42 @@
+html {
+	height:  100%;
+}
+
 body {
-	padding-top: 50px;
-	padding-bottom: 20px;
-	background-color: #4A4A50;
+	background-color:  rgba(16, 64, 13, 1);
+	height:  100%;
+	background-size: cover !important;
+	background: url("../css/bg-xsmall.png") no-repeat center fixed;
+}
+
+#main {
+	max-width: 1000px;
 }
 
 .header {
+	background-color:  rgba(16, 64, 13, 0.5);
+	padding-top: 10px;
+	padding-bottom: 20px;
 	color: #FFFFFF;
+}
+
+.input_buttons {
+	padding-top: 10px;
+}
+
+#img-logo {
+	max-width: 300px;
+}
+
+#img-crest {
+	max-width: 80px;
 }
 
 #tables_info, #tables_lottery {
 	padding-top:  20px;
 }
 
-p {
+p, h3, h4, .table caption {
 	color:  #FFFFFF;
 }
 

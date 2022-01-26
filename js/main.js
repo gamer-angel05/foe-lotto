@@ -262,6 +262,34 @@ function handleCreatePost() {
 	$("#create_post").css("display", "");
 }
 
+function handleCreateWinnerPost() {
+	/* Copy pasta to create the info post.
+		Intro buildings
+		Buildings
+		Intro donors
+		Donors
+	*/
+	let winners_doc = documentation.find(o => o.String === "winners-lotto");
+	let donors_doc = documentation.find(o => o.String === "donors-lotto");
+	let end_doc = documentation.find(o => o.String == "end-lotto");
+	var text = "";
+
+	// Winners
+	text += winners_doc.Text + "\n";
+	$("#table_lotwinners tbody tr").each((idx, tr) => {
+		text += "\n" + tr.innerText;
+	});
+	text += "\n\n";
+	// Donors
+	text += donors_doc.Text + "\n";
+	$("#table_lotdonors tbody tr").each((idx, tr) => {
+		text += "\n" + tr.innerText;
+	});
+	text += "\n\n" + end_doc.Text;
+	$("#create_winner_area").val(text);
+	$("#create_winner").css("display", "");
+}
+
 function copyTextArea(el) {
 	/* Copy text area, via button click.
 	*/
