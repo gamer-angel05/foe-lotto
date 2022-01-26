@@ -11,12 +11,13 @@ body {
 .bg-cover {
 	background-size: cover !important;
 	background: url("../css/bg-xsmall.png") no-repeat center fixed;
-	overflow-y: auto;
 }
 
 #main {
 	max-width: 1000px;
 	background-color:  rgba(16, 64, 13, 0.5);
+	height: 100%;
+	overflow-y: auto;
 }
 
 .header {
