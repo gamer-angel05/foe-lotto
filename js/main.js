@@ -253,14 +253,14 @@ function handleCreatePost() {
 	// Buildings
 	text += buildings_doc.Text + "\n";
 	$("#table_buildings tbody tr").each((idx, tr) => {
-		text += "\n" + tr.innerText;
+		text += "\n" + tr.innerText.replace("\t", ": ", 1);
 	});
 	text += "\n\n";
 	text += buildings2_doc.Text + "\n\n";
 	// Donors
 	text += donors_doc.Text + "\n"
 	$("#table_donors tbody tr").each((idx, tr) => {
-		text += "\n" + tr.innerText;
+		text += "\n" + tr.innerText.replace("\t", ": ", 1);
 	});
 	$("#create_post_area").val(text);
 	$("#create_post").css("display", "");
@@ -268,10 +268,10 @@ function handleCreatePost() {
 
 function handleCreateWinnerPost() {
 	/* Copy pasta to create the info post.
-		Intro buildings
-		Buildings
-		Intro donors
+		Intro winners
+		Winners
 		Donors
+		End
 	*/
 	let winners_doc = documentation.find(o => o.String === "winners-lotto");
 	let donors_doc = documentation.find(o => o.String === "donors-lotto");
