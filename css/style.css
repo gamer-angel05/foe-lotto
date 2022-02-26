@@ -47,7 +47,8 @@ nav {
 }
 nav.active-sticky {
     background-color: rgba(7, 52, 4, 0.8);
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 .golden {
     color: #FFFFFF;
@@ -55,7 +56,7 @@ nav.active-sticky {
                 radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
 }
 #lottery-button {
-    width: 100px;
+    width: 90px;
 }
 #refresh-button {
     color: #FFFFFF;
