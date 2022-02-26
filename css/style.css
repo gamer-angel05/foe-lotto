@@ -1,60 +1,85 @@
 html {
-	height:  100%;
+    height:  100%;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
 }
-
 body {
-	background-color:  rgba(16, 64, 13, 1);
-	height:  100%;
-	overflow: hidden;
+    background-color:  rgba(16, 64, 13, 1);
+    height:  100%;
 }
-
 .bg-cover {
-	background-size: cover !important;
-	background: url("../css/bg-xsmall.png") no-repeat center fixed;
+    background: url("../css/bg-xsmall.png") no-repeat center;
+    background-size: cover !important;
+    position: fixed;
+    height: 100vh;
+    width: 99.5vw;
 }
-
 .bg-color {
-	background-size: cover !important;
-	background-color:  rgba(16, 64, 13, 0.5);
-	overflow-y: auto;
+    background-color: rgba(16, 64, 13, 0.5);
+    height: 100%;
+}
+/* Allows bg-cover div to be fixed */
+.content {
+    position: absolute;
+    width: 100%;
+}
+.main {
+    max-width: 810px;
 }
 
-#main {
-	max-width: 1100px;
+/* Header */
+header {
+    background-color: rgba(16, 64, 13, 0.5);
+    color: #FFFFFF;
+    margin-bottom: 20px;
 }
-
-.header {
-	background-color:  rgba(16, 64, 13, 0.5);
-	padding-top: 10px;
-	padding-bottom: 20px;
-	color: #FFFFFF;
-}
-
-.input_buttons {
-	padding-top: 10px;
-}
-
 #img-logo {
-	max-width: 300px;
+    max-width: 300px;
 }
-
 #img-crest {
-	max-width: 80px;
+    max-width: 80px;
 }
 
-#tables_info, #tables_lottery {
-	padding-top:  20px;
-	/*display: none;*/
+/* Sticky-top */
+nav {
+    background-color: rgba(16, 64, 13, 0.5);
+    /*margin-bottom: 20px;*/
+}
+nav.active-sticky {
+    background-color: rgba(7, 52, 4, 0.8);
+    padding-bottom: 10px;
+}
+#lottery-button {
+    width: 100px;
+    color: #FFFFFF;
+    background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+                radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+}
+#refresh-button {
+    color: #FFFFFF;
+    font-size: 20px;
+}
+.js-top {
+    display: none;
+}
+#js-top a {
+    color: #FFFFFF;
+    font-size: 30px;
 }
 
+/* Sections */
+hr {
+    border-bottom: 1px solid #FFFFFF;
+}
 p, h3, h4, .table caption {
-	color:  #FFFFFF;
+    color:  #FFFFFF;
 }
 
-a {
-	color: #49C0FB;
+.js-clipboard {
+    font-size: 20px;
+    color: #FFFFFF;
 }
 
-a:hover {
-	color: #3A9AC9;
+.hidden {
+    display: none;
 }
