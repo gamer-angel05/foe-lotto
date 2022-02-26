@@ -32,6 +32,7 @@ class formatData {
 		this.fps = Math.min(MAX_FPS, TOTAL_FPS);
 		this.playersFiltered = this.#players.filter((player) => player.Building && player.Encounters > Number(MIN_ENCOUNTERS));
 		this.playersSelection = this.playersFiltered.map(({Member}) => Member);
+
 		this.shuffleDonors();
 		this.shufflePlayers();
 	}

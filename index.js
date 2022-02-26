@@ -67,7 +67,7 @@ function handleCopyClick() {
 
     setTimeout(() => {
         $(this).tooltip('hide');
-        $(this).on('hidden.bs.tooltip', () => { $(this).attr('data-original-title', 'Copy to clipboard'); })
+        $(this).on('hidden.bs.tooltip', () => { $(this).attr('data-original-title', 'Copy to clipboard'); });
     }, 1000)
 }
 function handleLotteryClick() {
@@ -83,7 +83,62 @@ function handleLotteryClick() {
     __instance__.getWinners();
     __instance__.getAssignedDonors();
 
+    confetti({
+        particleCount: 100,
+        spread: 40,
+        origin: {
+            x: Math.random() * (0.6 - 0.4) + 0.4,
+            // since they fall down, start a bit higher than random
+            y: Math.random() * (0.6 - 0.4) + 0.4
+        },
+        colors: ["#FFFFFF", "#5d4a1f", "#D1B464", "#FFFFAC"]
+    })
+    confetti({
+        particleCount: 100,
+        spread: 60,
+        origin: {
+            x: Math.random() * (0.6 - 0.4) + 0.4,
+            // since they fall down, start a bit higher than random
+            y: Math.random() * (0.9 - 0.4) + 0.4
+        },
+        colors: ["#FFFFFF", "#5d4a1f", "#D1B464", "#FFFFAC"]
+    })
+    confetti({
+        particleCount: 100,
+        spread: 80,
+        origin: {
+            x: Math.random() * (0.6 - 0.4) + 0.4,
+            // since they fall down, start a bit higher than random
+            y: Math.random() * (0.7 - 0.3) + 0.3
+        },
+        colors: ["#FFFFFF", "#5d4a1f", "#D1B464", "#FFFFAC"]
+    })
     $('#tables-lottery')[0].classList.remove('hidden');
+}
+function handleShuffleClick() {
+    /*  Shuffle the instance... 
+        only takes effect before Lottery is pressed of course
+    */
+    __instance__.shuffle();
+    loadInfo();
+    const button = $('#shuffle-button');
+    button.attr('data-original-title', 'Shuffled!').tooltip('show');
+
+    setTimeout(() => {
+        button.tooltip('hide');
+        button.on('hidden.bs.tooltip', () => button.attr('data-original-title', 'Lucky shuffle!'));
+    }, 1000)
+
+    confetti({
+        particleCount: 100,
+        spread: 50,
+        origin: {
+            x: Math.random() * (0.6 - 0.4) + 0.4,
+            // since they fall down, start a bit higher than random
+            y: Math.random() * (0.9 - 0.4) + 0.4
+        },
+        colors: ["#FFFFFF", "#5d4a1f", "#D1B464", "#FFFFAC"]
+    })
 }
 function handleInfoClick() {
     /*  Display the basic informations that is used
@@ -114,7 +169,6 @@ function handleReloadData() {
     $('#table-winners-donors tbody tr').remove();
     $('#tables-info tbody tr').remove();
     $('#tables-lottery tbody tr').remove();
-    $('#tables-info')[0].classList.add('hidden');
     $('#tables-lottery')[0].classList.add('hidden');
     
     $('#intro-area').text('');
@@ -122,8 +176,6 @@ function handleReloadData() {
     
     $('#winner-area').val('');
     $('#winner-post')[0].classList.add('hidden');
-
-    $('#info-button').text('More Info');
     
     load();
 }
