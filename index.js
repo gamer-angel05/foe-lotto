@@ -8,8 +8,6 @@ let __instance__ = undefined;
 
 
 function __init__() {
-    $('[data-toggle="tooltip"]').tooltip({trigger : 'hover'});
-
     const copyAll = document.querySelectorAll('.js-clipboard');
     copyAll.forEach(button => {
         button.addEventListener('click', handleCopyClick);
@@ -17,7 +15,7 @@ function __init__() {
         button.setAttribute('data-placement', 'top');
         button.setAttribute('data-html', 'true');
     })
-
+    $('[data-toggle="tooltip"]').tooltip({trigger : 'hover'});
     load();
 }
 function load() {
@@ -64,11 +62,7 @@ function handleCopyClick() {
     /*  Show and hide Copied tooltip for copy buttons
     */
     $(this).attr('data-original-title', 'Copied!').tooltip('show');
-
-    setTimeout(() => {
-        $(this).tooltip('hide');
-        $(this).on('hidden.bs.tooltip', () => { $(this).attr('data-original-title', 'Copy to clipboard'); });
-    }, 1000)
+    $(this).on('hidden.bs.tooltip', () => $(this).attr('data-original-title', 'Copy to clipboard'));
 }
 function handleLotteryClick() {
     /*  Reset tables and start the lottery process 
@@ -123,11 +117,7 @@ function handleShuffleClick() {
     loadInfo();
     const button = $('#shuffle-button');
     button.attr('data-original-title', 'Shuffled!').tooltip('show');
-
-    setTimeout(() => {
-        button.tooltip('hide');
-        button.on('hidden.bs.tooltip', () => button.attr('data-original-title', 'Lucky shuffle!'));
-    }, 1000)
+    button.on('hidden.bs.tooltip', () => button.attr('data-original-title', 'Lucky shuffle!'));
 
     confetti({
         particleCount: 100,
@@ -227,6 +217,12 @@ function handleCreateWinnerPost() {
     $('#winner-area').val(text);
     $('#winner-post')[0].classList.remove('hidden');
 }
+
+$(document).on('show.bs.tooltip', function (e) {
+    setTimeout(function() {   //calls click event after a certain time
+        $('[data-toggle="tooltip"]').tooltip('hide');
+    }, 4000)
+})
 
 $(document).scroll(function() {
     /*  Sticky navigation change bg color on scroll,
