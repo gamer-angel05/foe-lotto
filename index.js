@@ -77,6 +77,8 @@ function handleLotteryClick() {
     __instance__.getWinners();
     __instance__.getAssignedDonors();
 
+    $('#tables-lottery')[0].classList.remove('hidden');
+
     confetti({
         particleCount: 100,
         spread: 40,
@@ -88,7 +90,7 @@ function handleLotteryClick() {
         colors: ["#FFFFFF", "#5d4a1f", "#D1B464", "#FFFFAC"]
     })
     confetti({
-        particleCount: 100,
+        particleCount: 130,
         spread: 60,
         origin: {
             x: Math.random() * (0.6 - 0.4) + 0.4,
@@ -107,7 +109,6 @@ function handleLotteryClick() {
         },
         colors: ["#FFFFFF", "#5d4a1f", "#D1B464", "#FFFFAC"]
     })
-    $('#tables-lottery')[0].classList.remove('hidden');
 }
 function handleShuffleClick() {
     /*  Shuffle the instance... 
@@ -190,7 +191,7 @@ function handleCreatePost() {
     text += donors.Text + '\n';
     $('#table-donors tbody tr').each((idx, tr) => text += '\n' + tr.innerText.replace('\t', ': ', 1));
     
-    $('#create-post-area').val(text);
+    $('#intro-area').val(text);
     $('#intro-post')[0].classList.remove('hidden');
 }
 function handleCreateWinnerPost() {
@@ -230,7 +231,7 @@ $(document).scroll(function() {
     */
     let scroll = $(window).scrollTop();
 
-    if (scroll < 400) {
+    if (scroll < 450) {
         isSticky = false;
         $('.sticky-top')[0].classList.remove('active-sticky');
         $('.js-top').css('display', 'none');
