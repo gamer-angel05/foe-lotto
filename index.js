@@ -142,14 +142,15 @@ function handleInfoClick() {
     if (tables_info.contains('hidden')) {
         tables_info.remove('hidden');
         info_button.text('Less Info');
+        
     } else {
         tables_info.add('hidden');
         info_button.text('More Info');
     }
 
     if (RELOAD_INFO) {
-        loadInfo();
         RELOAD_INFO = false;
+        loadInfo();
     }
 }
 function handleReloadData() {
