@@ -203,16 +203,11 @@ function handleCreateWinnerPost() {
         --End
     */
     let winners = documentation.find((entry) => entry.String === 'winners-lotto');
-    let donors = documentation.find((entry) => entry.String === 'donors-lotto');
     let end = documentation.find((entry) => entry.String === 'end-lotto');
     var text = '';
 
     // Winners
     text += winners.Text + '\n';
-    $('#table-winners tbody tr').each((idx, tr) => text += '\n' + tr.innerText);
-    text += '\n\n';
-    // Donors
-    text += donors.Text + '\n';
     $('#table-winners-donors tbody tr').each((idx, tr) => text += '\n' + tr.innerText);
     text += '\n\n' + end.Text;
 
